@@ -6,8 +6,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CreateTodo from "./components/create-todo.component";
 import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
+import TodoApp from "./components/make-todo.component";
 
 import pepeSad from "./poster.jpeg";
+import StockFinder from './components/finance';
 
 class App extends Component {
   render() {
@@ -27,13 +29,19 @@ class App extends Component {
                 <li className="navbar-item">
                   <Link to="/create" className="nav-link">Create Todo</Link>
                 </li>
+                <li className="navbar-item">
+                  <Link to="/todoEdit" className="nav-link">Todo App</Link>
+                </li>
               </ul>
             </div>
           </nav>
-          <br/>
+          <br />
           <Route path="/" exact component={TodosList} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreateTodo} />
+          <Route path="/finder" component={StockFinder} />
+          <Route path="/todoEdit" component={TodoApp} />
+
         </div>
       </Router>
     );
