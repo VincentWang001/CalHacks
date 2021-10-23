@@ -7,7 +7,7 @@ import CreateTodo from "./components/create-todo.component";
 import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
 
-import pepeSad from "./pepecry.png";
+import pepeSad from "./poster.jpeg";
 
 class App extends Component {
   render() {
