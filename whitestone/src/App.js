@@ -32,6 +32,9 @@ class App extends Component {
                 <li className="navbar-item">
                   <Link to="/todoEdit" className="nav-link">Todo App</Link>
                 </li>
+                <li className="navbar-item">
+                  <Link to="/finder" className="nav-link">Finance App</Link>
+                </li>
               </ul>
             </div>
           </nav>

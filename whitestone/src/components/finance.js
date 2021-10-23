@@ -4,7 +4,10 @@ export default class StockFinder extends Component {
     render() {
         return (
             <div>
-                <p>Hello!</p>
+                <form>
+                    <label> Budget: $ <input type="text" name="name" /> </label>
+                    <input type="submit" value="Submit" />
+                </form>
             </div>
         )
     }
