@@ -4,7 +4,7 @@ export default class EditTodo extends Component {
     render() {
         return (
             <div>
-                <p>Welcome to Edit Todo Component!!</p>
+                <p>Welcome to Edit Message Component!!</p>
             </div>
         )
     }
