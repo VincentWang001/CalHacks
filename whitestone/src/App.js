@@ -8,6 +8,7 @@ import TodosList from "./components/todos-list.component";
 
 import pepeSad from "./stonks.jpg";
 import Stock from "./components/stockInfo";
+import Glossary from "./components/stockGlossary";
 import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
@@ -33,6 +34,9 @@ class App extends Component {
                 <li className="navbar-item">
                   <StyledLink to="/Stock" className="nav-link">Stock App</StyledLink>
                 </li>
+                <li className="navbar-item">
+                  <StyledLink to="/Glossary" className="nav-link">Stock Acronym Glossary</StyledLink>
+                </li>
               </ul>
             </div>
           </nav>
@@ -40,6 +44,7 @@ class App extends Component {
           <Route path="/" exact component={TodosList} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/Stock" component={Stock} />
+          <Route path="/Glossary" component={Glossary} />
 
         </div>
       </Router>

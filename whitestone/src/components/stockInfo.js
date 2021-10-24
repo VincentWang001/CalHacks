@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledH1 = styled.h1`
     font-weight: bold;
     font-size: 50px;
+    color: white;
     font-family: "Times New Roman", Times, Serif;
 `
 const StyledH2 = styled.h2`
@@ -221,8 +222,8 @@ class Stock extends React.Component {
         return (
             // <StyledBody>
                 <div>
-                    <div style={{ marginTop: 10 }}>
-                        <StyledH1 style={{ color: 'white' }}>Stock Market</StyledH1>
+                    <div>
+                        <StyledH1>Stock Market</StyledH1>
                         <form onSubmit={this.onStockSubmit}>
                             <div className="form-group">
                                 <label style={{ color: 'white' }}>Enter the stock you want (in abbreviated caps) here!</label>

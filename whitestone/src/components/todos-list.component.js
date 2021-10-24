@@ -22,6 +22,7 @@ export default class TodosList extends Component {
             <div>
                 <StyledH1>WHITESTONE</StyledH1>
                 <StyledP>Welcome to Whitestone, the place for you to know all about the stocks you're interested in!</StyledP>
+                <StyledP>Check out the Stock App on the top of the navbar and get started!</StyledP>
                 <img src={pepeSad} width="300" height="300"/>
             </div>
         )
