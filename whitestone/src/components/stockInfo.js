@@ -277,12 +277,12 @@ class Stock extends React.Component {
                     <PadTop/>
                     <StyledH2 style={{ color: 'white' }}>Stock: {this.state.stateStock} <p></p>
                     Budget: ${this.state.stateBudget} <p></p>
-                    Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}
-                    With a budget of ${this.state.stateBudget}, you could buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</StyledH2>
+                    Stock price (as of closing price on {this.state.latestDate}): ${this.state.price} <p></p>
+                    With a budget of ${this.state.stateBudget}, you can buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</StyledH2>
                 </div>}
                 {this.state.validSubmission == 1 && <Plot
                     style={{
-                        position: 'absolute', left: '65%', top: '%',
+                        position: 'absolute', left: '65%', top: '70.5%',
                         transform: 'translate(-50%, -50%)'
                     }}
                     data={[
@@ -304,8 +304,8 @@ class Stock extends React.Component {
                             marker: { color: 'blue' },
                         }
                     ]}
-                    layout={{ width: 750, height: 400, title: this.state.stock, 
-                        showlegend: true, legend: {x: 0, y: -.5}}}
+                    layout={{ width: 750, height: 450, title: this.state.stock, 
+                        showlegend: true, legend: {x: 0, y: -.5},  margin: {r: 30} }}
                 />}
             </div>
         //    {/* </StyledBody> */}
