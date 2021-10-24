@@ -13,11 +13,12 @@ import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
     font-weight: bold;
-    color: #F49393;
+    color: skyblue;
     font-size: 25px;
     text-decoration: underline overline;
-    font-family: "Times New Roman", Times, Serif;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 `
+
 
 class App extends Component {
   render() {
@@ -25,7 +26,7 @@ class App extends Component {
       <Router>
         <div className="container">
           <nav className="navbar navbar-expand-lg ">
-            <a class="navbar-brand" href="https://codingthesmartway.com" target="_blank">
+            <a class="navbar-brand" target="_blank">
               <img src={pepeSad} width="50" height="30" alt="CodingTheSmartWay.com" />
             </a>
             <StyledLink to="/" className="navbar-brand">Home</StyledLink>

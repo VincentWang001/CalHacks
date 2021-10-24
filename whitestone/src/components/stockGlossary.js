@@ -4,16 +4,36 @@ import styled from 'styled-components';
 const StyledH1 = styled.h1`
     font-weight: bold;
     font-size: 50px;
-    color: white;
-    font-family: "Times New Roman", Times, Serif;
+    color: skyblue;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    text-align: center;
 `
 
 const StyledP = styled.p`
     font-weight: bold;
     font-size: 25px;
-    color: #D2B48C;
-    font-family: "Times New Roman", Times, Serif;
+    color: skyblue;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    text-align: center;
 `
+
+const Warning = styled.h2`
+    margin-top: 30px;
+    font-weight: bold;
+    color: #E46C6C;
+    font-size: 20px;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+`
+
+const Success = styled.h2`
+    margin-top: 30px;
+    font-weight: bold;
+    color: #DDEEDD;
+    font-size: 20px;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+`
+
+
 class Glossary extends Component {
     constructor(props) {
         super(props);
@@ -24,7 +44,13 @@ class Glossary extends Component {
         this.state = {
             dict: {
                 "AMAZON": "AMZN",
+                "APPLE": "APPL",
+                "GAMESTOP": "GME",
                 "GOOGLE": "GOOGL",
+                "FACEBOOK": "FB",
+                "MICROSOFT": "MSFT",
+                "NETFLIX": "NFLX",
+                "NVIDIA": "NVDA",
                 "TESLA": "TSLA",
             },
             validSubmission: 0,
@@ -36,7 +62,7 @@ class Glossary extends Component {
 
     onChangeName(e) {
         this.setState({
-            name: e.target.value
+            name: e.target.value.toUpperCase()
         });
     }
 
@@ -45,9 +71,6 @@ class Glossary extends Component {
             isSubmitted: true
         })
         const name = this.state.name;
-        //name = name.slice();
-        console.log(name);
-        //name = name.toUpperCase();
         var dict = this.state.dict;
         if (name in dict) {
             this.setState({
@@ -74,7 +97,7 @@ class Glossary extends Component {
                         <div className="form-group">
                             <input type="text"
                                 className="form-control"
-                                placeholder="ex: Tesla"
+                                placeholder="ex: TESLA"
                                 value={this.state.name}
                                 onChange={this.onChangeName}
                             />
@@ -91,14 +114,14 @@ class Glossary extends Component {
                     </form>
                 </div>
                 {this.state.validSubmission == 1 && 
-                    <StyledP>
+                    <Success>
                         {this.state.acronym}
-                    </StyledP>
+                    </Success>
                 }
                 {this.state.validSubmission == -1 && 
-                    <StyledP>
+                    <Warning>
                         The name you entered did not match any names in our database.
-                    </StyledP>
+                    </Warning>
                 }
             </div>
         )

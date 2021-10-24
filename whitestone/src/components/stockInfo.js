@@ -5,20 +5,28 @@ import styled from 'styled-components';
 const StyledH1 = styled.h1`
     font-weight: bold;
     font-size: 50px;
-    color: white;
-    font-family: "Times New Roman", Times, Serif;
+    color: skyblue;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    text-align: center;
 `
 const StyledH2 = styled.h2`
     font-weight: bold;
     font-size: 20px;
     font-family: "Times New Roman", Times, Serif;
+    background-color: rgba(255,255,255,0.1);
+    width: 35%;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 `
 
 const Warning = styled.h2`
     font-weight: bold;
     color: #E46C6C;
     font-size: 20px;
-    font-family: "Times New Roman", Times, Serif;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 `
 
 const PadTop = styled.p`
@@ -27,7 +35,13 @@ const PadTop = styled.p`
 const StyledP = styled.p`
     font-weight: normal;
     font-size: 20px;
-    font-family: "Times New Roman", Times, Serif;
+    color: skyblue;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+`
+    
+const StyledButton = styled.input`
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+
 `
 
 class Stock extends React.Component {
@@ -68,7 +82,7 @@ class Stock extends React.Component {
             budget: e.target.value
         });
     }
-
+    
     findLineByLeastSquares(values_x, values_y) {
         var leastSquaresXValues = [];
         var leastSquaresYValues = [];
@@ -77,7 +91,7 @@ class Stock extends React.Component {
         var sum_xy = 0;
         var sum_xx = 0;
         var count = 0;
-    
+        
         /*
          * We'll use those variables for faster read/write access.
          */
@@ -226,7 +240,7 @@ class Stock extends React.Component {
                         <StyledH1>Stock Market</StyledH1>
                         <form onSubmit={this.onStockSubmit}>
                             <div className="form-group">
-                                <label style={{ color: 'white' }}>Enter the stock you want (in abbreviated caps) here!</label>
+                                <StyledP>Enter the stock you want (in abbreviated caps) here!</StyledP>
                                 <input type="text"
                                     className="form-control"
                                     placeholder="ex: TSLA"
@@ -236,7 +250,7 @@ class Stock extends React.Component {
                             </div>
                             <p></p>
                             <div className="form-group">
-                                <label style={{ color: 'white' }}>Enter your budget (in $) here! </label>
+                                <StyledP>Enter your budget (in $) here! </StyledP>
                                 <input
                                     type="text"
                                     className="form-control"
@@ -248,7 +262,7 @@ class Stock extends React.Component {
                             </div>
                             <p></p>
                             <div className="form-group">
-                                <input type="submit"
+                                <StyledButton type="submit"
                                     value="Generate Data!"
                                     className="btn btn-primary"
                                 />
@@ -263,14 +277,14 @@ class Stock extends React.Component {
                 </div>}
                 {this.state.validSubmission == 1 && <div>
                     <PadTop/>
-                    <StyledH2 style={{ color: 'white' }}>Stock: {this.state.stateStock}</StyledH2>
-                    <StyledH2 style={{ color: 'white' }}>Budget: ${this.state.stateBudget}</StyledH2>
-                    <StyledH2 style={{ color: 'white' }}>Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</StyledH2>
-                    <p style={{ color: 'white' }}>With a budget of ${this.state.stateBudget}, you could buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</p>
+                    <StyledH2 style={{ color: 'white' }}>Stock: {this.state.stateStock} <p></p>
+                    Budget: ${this.state.stateBudget} <p></p>
+                    Stock price (as of closing price on {this.state.latestDate}): ${this.state.price} <p></p>
+                    With a budget of ${this.state.stateBudget}, you can buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</StyledH2>
                 </div>}
                 {this.state.validSubmission == 1 && <Plot
                     style={{
-                        position: 'absolute', left: '65%', top: '%',
+                        position: 'absolute', left: '65%', top: '78.5%',
                         transform: 'translate(-50%, -50%)'
                     }}
                     data={[
@@ -292,8 +306,8 @@ class Stock extends React.Component {
                             marker: { color: 'blue' },
                         }
                     ]}
-                    layout={{ width: 750, height: 400, title: this.state.stock, 
-                        showlegend: true, legend: {x: 0, y: -.5}}}
+                    layout={{ width: 750, height: 350, title: this.state.stateStock, 
+                        showlegend: true, legend: {x: 0, y: -.5},  margin: {r: 30} }}
                 />}
             </div>
         //    {/* </StyledBody> */}
