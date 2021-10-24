@@ -5,7 +5,8 @@ import styled from 'styled-components';
 const StyledH1 = styled.h1`
     font-weight: bold;
     font-size: 50px;
-    font-family: "Times New Roman", Times, Serif;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    text-align: center;
 `
 const StyledH2 = styled.h2`
     font-weight: bold;
@@ -17,13 +18,14 @@ const StyledH2 = styled.h2`
     padding-right: 10px;
     padding-bottom: 10px;
     padding-left: 10px;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 `
 
 const Warning = styled.h2`
     font-weight: bold;
     color: #E46C6C;
     font-size: 20px;
-    font-family: "Times New Roman", Times, Serif;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 `
 
 const PadTop = styled.p`
@@ -32,7 +34,9 @@ const PadTop = styled.p`
 const StyledP = styled.p`
     font-weight: normal;
     font-size: 20px;
-    font-family: "Times New Roman", Times, Serif;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+
+
 `
 
 class Stock extends React.Component {
@@ -231,7 +235,7 @@ class Stock extends React.Component {
                         <StyledH1 style={{ color: 'white' }}>Stock Market</StyledH1>
                         <form onSubmit={this.onStockSubmit}>
                             <div className="form-group">
-                                <label style={{ color: 'white' }}>Enter the stock you want (in abbreviated caps) here!</label>
+                                <StyledP style={{ color: 'white' }}>Enter the stock you want (in abbreviated caps) here!</StyledP>
                                 <input type="text"
                                     className="form-control"
                                     placeholder="ex: TSLA"
@@ -241,7 +245,7 @@ class Stock extends React.Component {
                             </div>
                             <p></p>
                             <div className="form-group">
-                                <label style={{ color: 'white' }}>Enter your budget (in $) here! </label>
+                                <StyledP style={{ color: 'white' }}>Enter your budget (in $) here! </StyledP>
                                 <input
                                     type="text"
                                     className="form-control"
