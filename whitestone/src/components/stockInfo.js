@@ -1,6 +1,18 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
 import StockFinder from './finance';
+import styled from 'styled-components';
+
+const StyledH1 = styled.h1`
+    font-weight: bold;
+    font-size: 50px;
+    font-family: "Times New Roman", Times, Serif;
+`
+const StyledP = styled.p`
+    font-weight: normal;
+    font-size: 20px;
+    font-family: "Times New Roman", Times, Serif;
+`
 
 class Stock extends React.Component {
     constructor(props) {
@@ -87,14 +99,14 @@ class Stock extends React.Component {
     render() {
         return (
             <div>
-                <h1>Stock Market</h1>
+                <StyledH1>Stock Market</StyledH1>
+                <StyledP>Enter the stock you want (in abbreviated caps) here!</StyledP>
                 <input type="text"
                     value={this.state.stock}
                     onChange={this.onChangeStock}
                 />
                 <input type="submit" value="Submit" onClick={this.onStockSubmit.bind(this)} />
                 {this.state.isSubmitted && <div>
-                    <p>{this.state.stock}</p>
                     <p>Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</p>
                 </div>}
                 {this.state.isSubmitted && <Plot
