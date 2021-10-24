@@ -119,13 +119,28 @@ class Stock extends React.Component {
          */
         var result_values_x = [];
         var result_values_y = [];
+
+        x = values_x[0];
+        y = x * m + b;
+        console.log("hello there", this.state.stockChartXValues);
+        this.state.leastSquaresXValues.push(this.state.stockChartXValues[values_length - 1]);
+        this.state.leastSquaresYValues.push(y);
+
+        x = values_x[values_length - 1];
+        y = x * m + b;
+
+        //console.log("general kenobi", this.state.stockChartXValues);
+        this.state.leastSquaresXValues.push(this.state.stockChartXValues[0]);
+        this.state.leastSquaresYValues.push(y);
+        
+
     
-        for (var v = 0; v < values_length; v++) {
-            x = values_x[v];
-            y = x * m + b;
-            this.state.leastSquaresXValues.push(x);
-            this.state.leastSquaresYValues.push(y);
-        }
+        // for (var v = 0; v < values_length; v++) {
+        //     x = values_x[v];
+        //     y = x * m + b;
+        //     this.state.leastSquaresXValues.push(x);
+        //     this.state.leastSquaresYValues.push(y);
+        // }
     }
 
     onStockSubmit(e) {
@@ -171,7 +186,7 @@ class Stock extends React.Component {
                             latestDateBool = false;
                         }
                         stockChartXValuesFunction.push(key);
-                        stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['4. close']);
+                        stockChartYValuesFunction.push(parseFloat(data['Time Series (Daily)'][key]['4. close']));
                         leastSquaresX.push(count);
                         count += 1;
                     }
@@ -197,8 +212,9 @@ class Stock extends React.Component {
                         validSubmission: 1
                     });
 
-                    console.log("pls work:", stockChartXValuesFunction);
-                    this.findLineByLeastSquares(leastSquaresX, stockChartYValuesFunction.reverse());
+                    //console.log("pls work:", stockChartXValuesFunction);
+                    pointerToThis.findLineByLeastSquares(leastSquaresX, stockChartYValuesFunction.reverse());
+                    stockChartYValuesFunction.reverse();
 
                 }
             )
@@ -259,23 +275,20 @@ class Stock extends React.Component {
                             type: 'scatter',
                             mode: 'lines+markers',
                             marker: { color: 'red' },
-                        }
-                    ]}
-                    layout={{ width: 720, height: 440, title: 'A Fancy Plot' }}
-                />}
-                {this.state.isSubmitted && <Plot
-                    data={[
+                        },
                         {
                             x: this.state.leastSquaresXValues,
                             y: this.state.leastSquaresYValues,
                             type: 'scatter',
                             mode: 'lines+markers',
-                            marker: { color: 'red' },
+                            marker: { color: 'blue' },
                         }
                     ]}
+
                     layout={{ width: 720, height: 440, title: 'A Fancy Plot' }}
                 />}
             </div>
+            
         )
     }
 }
