@@ -1,5 +1,6 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
+import StockFinder from './finance';
 
 class Stock extends React.Component {
     constructor(props) {
