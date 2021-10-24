@@ -23,6 +23,18 @@ const StyledP = styled.p`
     font-family: "Times New Roman", Times, Serif;
 `
 
+const StyledBody = styled.div`
+  background: url('https://www.marketplace.org/wp-content/uploads/2021/10/stockmarket.jpg?fit=2800%2C1575');
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+`;
+
 class Stock extends React.Component {
     constructor(props) {
         super(props);
@@ -51,12 +63,12 @@ class Stock extends React.Component {
     onChangeStock(e) {
         this.setState({
             stock: e.target.value
-        });  
+        });
     }
     onChangeBudget(e) {
         this.setState({
             budget: e.target.value
-        });     
+        });
     }
 
     onStockSubmit(e) {
@@ -79,7 +91,7 @@ class Stock extends React.Component {
         let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.state.stock}&outputsize=compact&apikey=${API_KEY}`;
         let stockChartXValuesFunction = [];
         let stockChartYValuesFunction = [];
-        
+
         fetch(API_Call)
             .then(
                 function (response) {
@@ -118,60 +130,68 @@ class Stock extends React.Component {
 
     render() {
         return (
-            <div>
-                <div style={{ marginTop: 10 }}>
-                <StyledH1>Stock Market</StyledH1>
-                <form onSubmit={this.onStockSubmit}>
-                    <div className="form-group">
-                        <label>Enter the stock you want (in abbreviated caps) here!</label>
-                        <input type="text"
-                            className="form-control"
-                            placeholder="ex: TSLA"
-                            value={this.state.stock}
-                            onChange={this.onChangeStock}
-                        />
-                    </div>
-                    <p></p>
-                    <div className="form-group">
-                        <label>Enter your budget (in $) here! </label>
-                        <input
-                            type="text"
-                            className="form-control"
-                            placeholder="ex: 2000"
-                            value={this.state.budget}
-                            onChange={this.onChangeBudget}
-                        />
-                    </div>
-                    <p></p>
-                    <div className="form-group">
-                        <input type="submit" 
-                            value="Generate Data!" 
-                            className="btn btn-primary" 
-                        />
-                    </div>
-                </form>
-            </div>
+            <StyledBody>
+                <div>
+                    <div style={{ marginTop: 10 }}>
+                        <StyledH1 style={{ color: 'white' }}>Stock Market</StyledH1>
+                        <form onSubmit={this.onStockSubmit}>
+                            <div className="form-group">
+                                <label style={{ color: 'white' }}>Enter the stock you want (in abbreviated caps) here!</label>
+                                <input type="text"
+                                    className="form-control"
+                                    placeholder="ex: TSLA"
+                                    value={this.state.stock}
+                                    onChange={this.onChangeStock}
+                                />
+                            </div>
+                            <p></p>
+                            <div className="form-group">
+                                <label style={{ color: 'white' }}>Enter your budget (in $) here! </label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    placeholder="ex: 2000"
+                                    value={this.state.budget}
+                                    onChange={this.onChangeBudget}
 
-                {this.state.isSubmitted && <div>
-                    <PadTop/>
-                    <StyledH2>Stock: {this.state.stateStock}</StyledH2>
-                    <StyledH2>Budget: ${this.state.stateBudget}</StyledH2>
-                    <StyledH2>Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</StyledH2>
-                    <p>With a budget of ${this.state.stateBudget}, you could buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</p>
-                </div>}
-                {this.state.isSubmitted && <Plot
-                    data={[
-                        {
-                            x: this.state.stockChartXValues,
-                            y: this.state.stockChartYValues,
-                            type: 'scatter',
-                            mode: 'lines+markers',
-                            marker: { color: 'red' },
-                        }
-                    ]}
-                    layout={{ width: 720, height: 440, title: 'A Fancy Plot' }}
-                />}
-            </div>
+                                />
+                            </div>
+                            <p></p>
+                            <div className="form-group">
+                                <input type="submit"
+                                    value="Generate Data!"
+                                    className="btn btn-primary"
+
+                                />
+                            </div>
+                        </form>
+                    </div>
+
+                    {this.state.isSubmitted && <div>
+                        <PadTop />
+                        <StyledH2 style={{ color: 'white' }} className={PadTop}>Stock: {this.state.stateStock}</StyledH2>
+                        <StyledH2 style={{ color: 'white' }} >Budget: ${this.state.stateBudget}</StyledH2>
+                        <StyledH2 style={{ color: 'white' }} >Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</StyledH2>
+                        <p style={{ color: 'white' }}>With a budget of ${this.state.stateBudget}, you could buy {Math.floor(this.state.stateBudget * 100 / this.state.price) / 100} stocks!</p>
+                    </div>}
+                    {this.state.isSubmitted && <Plot
+                        style={{
+                            position: 'absolute', left: '50%', top: '60%',
+                            transform: 'translate(-50%, -50%)'
+                        }}
+                        data={[
+                            {
+                                x: this.state.stockChartXValues,
+                                y: this.state.stockChartYValues,
+                                type: 'scatter',
+                                mode: 'lines+markers',
+                                marker: { color: 'red' },
+                            }
+                        ]}
+                        layout={{ width: 720, height: 440, title: 'A Fancy Plot' }}
+                    />}
+                </div>
+            </StyledBody>
         )
     }
 }
