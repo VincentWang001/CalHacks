@@ -10,6 +10,7 @@ import TodoApp from "./components/make-todo.component";
 
 import pepeSad from "./poster.jpeg";
 import StockFinder from './components/finance';
+import Stock from "./components/stockInfo";
 
 class App extends Component {
   render() {
@@ -35,6 +36,9 @@ class App extends Component {
                 <li className="navbar-item">
                   <Link to="/finder" className="nav-link">Finance App</Link>
                 </li>
+                <li className="navbar-item">
+                  <Link to="/finder" className="nav-link">Stock App</Link>
+                </li>
               </ul>
             </div>
           </nav>
@@ -44,6 +48,7 @@ class App extends Component {
           <Route path="/create" component={CreateTodo} />
           <Route path="/finder" component={StockFinder} />
           <Route path="/todoEdit" component={TodoApp} />
+          <Route path="/Stock" component={Stock} />
 
         </div>
       </Router>
