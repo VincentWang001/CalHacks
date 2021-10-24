@@ -1,4 +1,18 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
+
+const StockLine = styled.h1`
+  font-size: 1.5em;
+  text-align: center;
+  color: palevioletred;
+`;
+
+const StyledLabel = styled.label`
+  font-family: 'Times New Roman', serif;
+  font-weight: bold;
+  font-size: 1.5em;
+  color: #000000;
+`;
 
 export default class StockFinder extends Component {
 
@@ -6,8 +20,6 @@ export default class StockFinder extends Component {
         super(props);
 
         this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
-
-
         this.state = {
             amountPower: '',
             amazonAmount: 3335.55,
@@ -26,13 +38,13 @@ export default class StockFinder extends Component {
     render() {
         return (
             <form>
-                <label>Budget: $</label>
+                <StyledLabel>Budget: $</StyledLabel>
                 <input type="text"
                     value={this.state.todo_description}
                     onChange={this.onChangeTodoDescription}
                 />
-                <h1>You can buy {this.state.amountPower / this.state.amazonAmount} Amazon Stock(s)</h1>
-                <h1>You can buy {this.state.amountPower / this.state.googleAmount} Google Stock(s)</h1>
+                <StockLine>You can buy {this.state.amountPower / this.state.amazonAmount} Amazon Stock(s)</StockLine>
+                <StockLine>You can buy {this.state.amountPower / this.state.googleAmount} Google Stock(s)</StockLine>
             </form>
         )
     }

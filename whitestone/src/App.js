@@ -12,6 +12,8 @@ import pepeSad from "./poster.jpeg";
 import StockFinder from './components/finance';
 import Stock from "./components/stockInfo";
 
+
+
 class App extends Component {
   render() {
     return (
