@@ -19,6 +19,7 @@ class Stock extends React.Component {
         super(props);
 
         this.onChangeStock = this.onChangeStock.bind(this);
+        this.onChangeBudget = this.onChangeBudget.bind(this);
         this.onStockSubmit = this.onStockSubmit.bind(this);
 
         this.state = {
@@ -26,6 +27,7 @@ class Stock extends React.Component {
             stockChartYValues: [],
             stock: '',
             price: '',
+            budget: '',
             latestDate: '',
             isSubmitted: false
         }
@@ -38,8 +40,12 @@ class Stock extends React.Component {
     onChangeStock(e) {
         this.setState({
             stock: e.target.value
-        });
-        
+        });  
+    }
+    onChangeBudget(e) {
+        this.setState({
+            budget: e.target.value
+        });     
     }
 
     onStockSubmit() {
@@ -56,12 +62,12 @@ class Stock extends React.Component {
 
     fetchStock() {
         const pointerToThis = this;
-        console.log(pointerToThis);
+        console.log("pointerToThis: ", pointerToThis);
         const API_KEY = 'KRWWGZHCPVK2G29U';
         let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.state.stock}&outputsize=compact&apikey=${API_KEY}`;
         let stockChartXValuesFunction = [];
         let stockChartYValuesFunction = [];
-
+        
         fetch(API_Call)
             .then(
                 function (response) {
@@ -99,13 +105,44 @@ class Stock extends React.Component {
     render() {
         return (
             <div>
+                <div style={{ marginTop: 10 }}>
                 <StyledH1>Stock Market</StyledH1>
+                {/* <form onSubmit={this.onSubmit}> */}
+                    <div className="form-group">
+                        <label>Enter the stock you want (in abbreviated caps) here!</label>
+                        <input type="text"
+                            className="form-control"
+                            value={this.state.stock}
+                            onChange={this.onChangeStock}
+                        />
+                    </div>
+                    <p></p>
+                    <div className="form-group">
+                        <label>Enter your budget here! </label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            value={this.state.budget}
+                            onChange={this.onChangeBudget}
+                        />
+                    </div>
+                    <p></p>
+                    <div className="form-group">
+                        <input type="submit" 
+                            value="Generate Data!" 
+                            className="btn btn-primary"
+                            onClick={this.onStockSubmit.bind(this)} />
+                    </div>
+                {/*     </form> */}
+            </div>
+
+                {/* <StyledH1>Stock Market</StyledH1>
                 <StyledP>Enter the stock you want (in abbreviated caps) here!</StyledP>
                 <input type="text"
                     value={this.state.stock}
                     onChange={this.onChangeStock}
                 />
-                <input type="submit" value="Submit" onClick={this.onStockSubmit.bind(this)} />
+                <input type="submit" value="Submit" onClick={this.onStockSubmit.bind(this)} /> */}
                 {this.state.isSubmitted && <div>
                     <p>Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</p>
                 </div>}
