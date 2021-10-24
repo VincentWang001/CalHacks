@@ -1,6 +1,5 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
-import StockFinder from './finance';
 import styled from 'styled-components';
 
 const StyledH1 = styled.h1`
@@ -29,18 +28,6 @@ const StyledP = styled.p`
     font-size: 20px;
     font-family: "Times New Roman", Times, Serif;
 `
-
-const StyledBody = styled.div`
-//   background: url('https://www.marketplace.org/wp-content/uploads/2021/10/stockmarket.jpg?fit=2800%2C1575');
-//   background-size: cover;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   right: 0;
-//   bottom: 0;
-//   width: 100%;
-//   height: 100%;
-`;
 
 class Stock extends React.Component {
     constructor(props) {
