@@ -273,19 +273,24 @@ class Stock extends React.Component {
                             x: this.state.stockChartXValues,
                             y: this.state.stockChartYValues,
                             type: 'scatter',
+                            name:'Market Summary',
                             mode: 'lines+markers',
                             marker: { color: 'red' },
+
                         },
                         {
                             x: this.state.leastSquaresXValues,
                             y: this.state.leastSquaresYValues,
                             type: 'scatter',
+                            name:'Least Squares Approximation',
                             mode: 'lines+markers',
                             marker: { color: 'blue' },
                         }
                     ]}
 
-                    layout={{ width: 720, height: 440, title: this.state.stock }}
+
+
+                    layout={{ width: 1000, height: 440, title: this.state.stock }}
                 />}
             </div>
             
