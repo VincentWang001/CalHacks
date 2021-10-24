@@ -12,11 +12,12 @@ import styled from 'styled-components';
 
 const StyledLink = styled(Link)`
     font-weight: bold;
-    color: #F49393;
+    color: skyblue;
     font-size: 25px;
     text-decoration: underline overline;
-    font-family: "Times New Roman", Times, Serif;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 `
+
 
 class App extends Component {
   render() {

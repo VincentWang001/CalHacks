@@ -35,7 +35,10 @@ const StyledP = styled.p`
     font-weight: normal;
     font-size: 20px;
     font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
-
+`
+    
+const StyledButton = styled.input`
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
 
 `
 
@@ -257,7 +260,7 @@ class Stock extends React.Component {
                             </div>
                             <p></p>
                             <div className="form-group">
-                                <input type="submit"
+                                <StyledButton type="submit"
                                     value="Generate Data!"
                                     className="btn btn-primary"
                                 />
