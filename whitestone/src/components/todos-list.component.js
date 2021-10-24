@@ -5,7 +5,7 @@ export default class TodosList extends Component {
     render() {
         return (
             <div>
-                <p>Welcome to Todos List Component!!</p>
+                <p>Welcome to STONKS!!</p>
                 <img src={pepeSad} width="300" height="300"/>
             </div>
         )

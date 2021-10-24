@@ -25,13 +25,13 @@ class App extends Component {
             <div className="collpase navbar-collapse">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
+                  <Link to="/Stock" className="nav-link">Stock App</Link>
+                </li>
+                <li className="navbar-item">
                   <Link to="/" className="nav-link">Todos</Link>
                 </li>
                 <li className="navbar-item">
                   <Link to="/finder" className="nav-link">Finance App</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/Stock" className="nav-link">Stock App</Link>
                 </li>
               </ul>
             </div>
