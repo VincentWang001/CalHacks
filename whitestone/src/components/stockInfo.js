@@ -70,6 +70,8 @@ class Stock extends React.Component {
     }
 
     findLineByLeastSquares(values_x, values_y) {
+        var leastSquaresXValues = [];
+        var leastSquaresYValues = [];
         var sum_x = 0;
         var sum_y = 0;
         var sum_xy = 0;
@@ -123,24 +125,19 @@ class Stock extends React.Component {
         x = values_x[0];
         y = x * m + b;
         console.log("hello there", this.state.stockChartXValues);
-        this.state.leastSquaresXValues.push(this.state.stockChartXValues[values_length - 1]);
-        this.state.leastSquaresYValues.push(y);
+        leastSquaresXValues.push(this.state.stockChartXValues[values_length - 1]);
+        leastSquaresYValues.push(y);
 
         x = values_x[values_length - 1];
         y = x * m + b;
 
         //console.log("general kenobi", this.state.stockChartXValues);
-        this.state.leastSquaresXValues.push(this.state.stockChartXValues[0]);
-        this.state.leastSquaresYValues.push(y);
-        
-
-    
-        // for (var v = 0; v < values_length; v++) {
-        //     x = values_x[v];
-        //     y = x * m + b;
-        //     this.state.leastSquaresXValues.push(x);
-        //     this.state.leastSquaresYValues.push(y);
-        // }
+        leastSquaresXValues.push(this.state.stockChartXValues[0]);
+        leastSquaresYValues.push(y);
+        this.setState({
+            leastSquaresXValues: leastSquaresXValues,
+            leastSquaresYValues: leastSquaresYValues
+        });    
     }
 
     onStockSubmit(e) {
