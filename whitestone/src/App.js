@@ -9,29 +9,33 @@ import TodosList from "./components/todos-list.component";
 import pepeSad from "./stonks.jpg";
 import StockFinder from './components/finance';
 import Stock from "./components/stockInfo";
+import styled from 'styled-components';
 
-
+const StyledLink = styled(Link)`
+    font-weight: bold;
+    color: #F49393;
+    font-size: 25px;
+    text-decoration: underline overline;
+    font-family: "Times New Roman", Times, Serif;
+`
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="container">
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg ">
             <a class="navbar-brand" href="https://codingthesmartway.com" target="_blank">
               <img src={pepeSad} width="50" height="30" alt="CodingTheSmartWay.com" />
             </a>
-            <Link to="/" className="navbar-brand">Whitestone</Link>
+            <StyledLink to="/" className="navbar-brand">Whitestone</StyledLink>
             <div className="collpase navbar-collapse">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
-                  <Link to="/Stock" className="nav-link">Stock App</Link>
+                  <StyledLink to="/Stock" className="nav-link">Stock App</StyledLink>
                 </li>
                 <li className="navbar-item">
-                  <Link to="/" className="nav-link">Todos</Link>
-                </li>
-                <li className="navbar-item">
-                  <Link to="/finder" className="nav-link">Finance App</Link>
+                  <StyledLink to="/finder" className="nav-link">Finance App</StyledLink>
                 </li>
               </ul>
             </div>
