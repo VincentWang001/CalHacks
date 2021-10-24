@@ -285,7 +285,7 @@ class Stock extends React.Component {
                         }
                     ]}
 
-                    layout={{ width: 720, height: 440, title: 'A Fancy Plot' }}
+                    layout={{ width: 720, height: 440, title: this.state.stock }}
                 />}
             </div>
             
