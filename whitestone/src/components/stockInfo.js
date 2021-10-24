@@ -1,5 +1,6 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
+import StockFinder from './finance';
 
 class Stock extends React.Component {
     constructor(props) {
@@ -11,7 +12,7 @@ class Stock extends React.Component {
         this.state = {
             stockChartXValues: [],
             stockChartYValues: [],
-            stock: 'TSLA',
+            stock: '',
             isSubmitted: false
         }
     }
@@ -25,50 +26,50 @@ class Stock extends React.Component {
             stock: e.target.value
         });
         console.log(this.state.stock)
-        console.log('TSLA' == this.state.stock)
     }
 
     onStockSubmit() {
         this.setState({
             isSubmitted: true
         })
+        this.fetchStock();
+        this.forceUpdateHandler();
+    }
 
+    forceUpdateHandler() {
+        this.forceUpdate();
     }
 
     fetchStock() {
-        if (this.state.isSubmitted) {
-            const pointerToThis = this;
-            console.log(pointerToThis);
-            const API_KEY = 'KRWWGZHCPVK2G29U';
-            let StockSymbol = 'TSLA';
-            console.log(StockSymbol == this.state.stock)
-            let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.state.stock}&outputsize=compact&apikey=${API_KEY}`;
-            let stockChartXValuesFunction = [];
-            let stockChartYValuesFunction = [];
+        const pointerToThis = this;
+        console.log(pointerToThis);
+        const API_KEY = 'KRWWGZHCPVK2G29U';
+        let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.state.stock}&outputsize=compact&apikey=${API_KEY}`;
+        let stockChartXValuesFunction = [];
+        let stockChartYValuesFunction = [];
 
-            fetch(API_Call)
-                .then(
-                    function (response) {
-                        return response.json();
+        fetch(API_Call)
+            .then(
+                function (response) {
+                    return response.json();
+                }
+            )
+            .then(
+                function (data) {
+                    console.log(data);
+
+                    for (var key in data['Time Series (Daily)']) {
+                        stockChartXValuesFunction.push(key);
+                        stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['1. open']);
                     }
-                )
-                .then(
-                    function (data) {
-                        console.log(data);
 
-                        for (var key in data['Time Series (Daily)']) {
-                            stockChartXValuesFunction.push(key);
-                            stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['1. open']);
-                        }
-
-                        // console.log(stockChartXValuesFunction);
-                        pointerToThis.setState({
-                            stockChartXValues: stockChartXValuesFunction,
-                            stockChartYValues: stockChartYValuesFunction
-                        });
-                    }
-                )
-        }
+                    // console.log(stockChartXValuesFunction);
+                    pointerToThis.setState({
+                        stockChartXValues: stockChartXValuesFunction,
+                        stockChartYValues: stockChartYValuesFunction
+                    });
+                }
+            )
     }
 
     render() {
@@ -79,9 +80,9 @@ class Stock extends React.Component {
                     value={this.state.stock}
                     onChange={this.onChangeStock}
                 />
-                <input type="submit" value="Submit" onSubmit={this.onSubmitStock} />
+                <input type="submit" value="Submit" onClick={this.onStockSubmit.bind(this)} />
                 <p>{this.state.stock}</p>
-                <Plot
+                {this.state.isSubmitted && <Plot
                     data={[
                         {
                             x: this.state.stockChartXValues,
@@ -92,7 +93,7 @@ class Stock extends React.Component {
                         }
                     ]}
                     layout={{ width: 720, height: 440, title: 'A Fancy Plot' }}
-                />
+                />}
             </div>
         )
     }
