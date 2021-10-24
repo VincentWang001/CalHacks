@@ -25,7 +25,7 @@ class App extends Component {
       <Router>
         <div className="container">
           <nav className="navbar navbar-expand-lg ">
-            <a class="navbar-brand" href="https://codingthesmartway.com" target="_blank">
+            <a class="navbar-brand" target="_blank">
               <img src={pepeSad} width="50" height="30" alt="CodingTheSmartWay.com" />
             </a>
             <StyledLink to="/" className="navbar-brand">Home</StyledLink>
