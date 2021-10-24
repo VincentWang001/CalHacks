@@ -14,6 +14,13 @@ const StyledH2 = styled.h2`
     font-family: "Times New Roman", Times, Serif;
 `
 
+const Warning = styled.h2`
+    font-weight: bold;
+    color: #E46C6C;
+    font-size: 20px;
+    font-family: "Times New Roman", Times, Serif;
+`
+
 const PadTop = styled.p`
     padding-top: 50px;
 `
@@ -40,12 +47,13 @@ class Stock extends React.Component {
             budget: '',
             stateBudget: '',
             latestDate: '',
+            validSubmission: 0,
             isSubmitted: false
         }
     }
 
     componentDidMount() {
-        this.fetchStock();
+        //this.fetchStock();
     }
 
     onChangeStock(e) {
@@ -102,7 +110,12 @@ class Stock extends React.Component {
                         stockChartXValuesFunction.push(key);
                         stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['4. close']);
                     }
-
+                    if (isNaN(budget) || latestDateBool == true) {
+                        pointerToThis.setState({
+                            validSubmission: -1
+                        });
+                        return;
+                    }
                     // console.log(stockChartXValuesFunction);
                     pointerToThis.setState({
                         stockChartXValues: stockChartXValuesFunction,
@@ -110,7 +123,8 @@ class Stock extends React.Component {
                         price: latestPrice,
                         stateBudget: budget,
                         stateStock: stock,
-                        latestDate: latestDate
+                        latestDate: latestDate,
+                        validSubmission: 1
                     });
                 }
             )
@@ -151,15 +165,19 @@ class Stock extends React.Component {
                     </div>
                 </form>
             </div>
-
-                {this.state.isSubmitted && <div>
+                {this.state.validSubmission == -1 && <div>
+                    <PadTop/>
+                    <Warning>Your input had an incorrect format. Please check to see if 
+                        your budget input is a number and your stock input is an existing stock (all caps abbreviated notation).</Warning>
+                </div>}
+                {this.state.validSubmission == 1 && <div>
                     <PadTop/>
                     <StyledH2>Stock: {this.state.stateStock}</StyledH2>
                     <StyledH2>Budget: ${this.state.stateBudget}</StyledH2>
                     <StyledH2>Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</StyledH2>
                     <p>With a budget of ${this.state.stateBudget}, you could buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</p>
                 </div>}
-                {this.state.isSubmitted && <Plot
+                {this.state.validSubmission == 1 && <Plot
                     data={[
                         {
                             x: this.state.stockChartXValues,
