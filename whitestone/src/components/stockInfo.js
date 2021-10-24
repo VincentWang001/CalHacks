@@ -8,6 +8,15 @@ const StyledH1 = styled.h1`
     font-size: 50px;
     font-family: "Times New Roman", Times, Serif;
 `
+const StyledH2 = styled.h2`
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Times New Roman", Times, Serif;
+`
+
+const PadTop = styled.p`
+    padding-top: 50px;
+`
 const StyledP = styled.p`
     font-weight: normal;
     font-size: 20px;
@@ -26,8 +35,10 @@ class Stock extends React.Component {
             stockChartXValues: [],
             stockChartYValues: [],
             stock: '',
+            stateStock: '',
             price: '',
             budget: '',
+            stateBudget: '',
             latestDate: '',
             isSubmitted: false
         }
@@ -48,19 +59,20 @@ class Stock extends React.Component {
         });     
     }
 
-    onStockSubmit() {
+    onStockSubmit(e) {
         this.setState({
             isSubmitted: true
         })
-        this.fetchStock();
+        this.fetchStock(this.state.stock, this.state.budget);
         this.forceUpdateHandler();
+        e.preventDefault();
     }
 
     forceUpdateHandler() {
         this.forceUpdate();
     }
 
-    fetchStock() {
+    fetchStock(stock, budget) {
         const pointerToThis = this;
         console.log("pointerToThis: ", pointerToThis);
         const API_KEY = 'KRWWGZHCPVK2G29U';
@@ -96,6 +108,8 @@ class Stock extends React.Component {
                         stockChartXValues: stockChartXValuesFunction,
                         stockChartYValues: stockChartYValuesFunction,
                         price: latestPrice,
+                        stateBudget: budget,
+                        stateStock: stock,
                         latestDate: latestDate
                     });
                 }
@@ -112,16 +126,18 @@ class Stock extends React.Component {
                         <label>Enter the stock you want (in abbreviated caps) here!</label>
                         <input type="text"
                             className="form-control"
+                            placeholder="ex: TSLA"
                             value={this.state.stock}
                             onChange={this.onChangeStock}
                         />
                     </div>
                     <p></p>
                     <div className="form-group">
-                        <label>Enter your budget here! </label>
+                        <label>Enter your budget (in $) here! </label>
                         <input
                             type="text"
                             className="form-control"
+                            placeholder="ex: 2000"
                             value={this.state.budget}
                             onChange={this.onChangeBudget}
                         />
@@ -129,24 +145,19 @@ class Stock extends React.Component {
                     <p></p>
                     <div className="form-group">
                         <input type="submit" 
-                            //value="Generate Data!" 
-                            value="Submit"
-                            className="btn btn-primary"
-                            //onClick={this.onStockSubmit.bind(this)} 
+                            value="Generate Data!" 
+                            className="btn btn-primary" 
                         />
                     </div>
                 </form>
             </div>
 
-                {/* <StyledH1>Stock Market</StyledH1>
-                <StyledP>Enter the stock you want (in abbreviated caps) here!</StyledP>
-                <input type="text"
-                    value={this.state.stock}
-                    onChange={this.onChangeStock}
-                />
-                <input type="submit" value="Submit" onClick={this.onStockSubmit.bind(this)} /> */}
                 {this.state.isSubmitted && <div>
-                    <p>Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</p>
+                    <PadTop/>
+                    <StyledH2>Stock: {this.state.stateStock}</StyledH2>
+                    <StyledH2>Budget: ${this.state.stateBudget}</StyledH2>
+                    <StyledH2>Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</StyledH2>
+                    <p>With a budget of ${this.state.stateBudget}, you could buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</p>
                 </div>}
                 {this.state.isSubmitted && <Plot
                     data={[
