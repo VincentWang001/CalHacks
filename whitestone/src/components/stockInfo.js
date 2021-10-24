@@ -304,7 +304,8 @@ class Stock extends React.Component {
                             marker: { color: 'blue' },
                         }
                     ]}
-                    layout={{ width: 750, height: 400, title: this.state.stock }}
+                    layout={{ width: 750, height: 400, title: this.state.stock, 
+                        showlegend: true, legend: {x: 0, y: -.5}}}
                 />}
             </div>
         //    {/* </StyledBody> */}
