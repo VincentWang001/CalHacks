@@ -176,7 +176,7 @@ class Stock extends React.Component {
                     </div>}
                     {this.state.isSubmitted && <Plot
                         style={{
-                            position: 'absolute', left: '50%', top: '60%',
+                            position: 'absolute', left: '50%', top: '%',
                             transform: 'translate(-50%, -50%)'
                         }}
                         data={[
