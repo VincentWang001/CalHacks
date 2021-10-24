@@ -11,6 +11,12 @@ const StyledH2 = styled.h2`
     font-weight: bold;
     font-size: 20px;
     font-family: "Times New Roman", Times, Serif;
+    background-color: rgba(255,255,255,0.1);
+    width: 35%;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
 `
 
 const Warning = styled.h2`
@@ -262,10 +268,10 @@ class Stock extends React.Component {
                 </div>}
                 {this.state.validSubmission == 1 && <div>
                     <PadTop/>
-                    <StyledH2 style={{ color: 'white' }}>Stock: {this.state.stateStock}</StyledH2>
-                    <StyledH2 style={{ color: 'white' }}>Budget: ${this.state.stateBudget}</StyledH2>
-                    <StyledH2 style={{ color: 'white' }}>Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</StyledH2>
-                    <p style={{ color: 'white' }}>With a budget of ${this.state.stateBudget}, you could buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</p>
+                    <StyledH2 style={{ color: 'white' }}>Stock: {this.state.stateStock} <p></p>
+                    Budget: ${this.state.stateBudget} <p></p>
+                    Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}
+                    With a budget of ${this.state.stateBudget}, you could buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</StyledH2>
                 </div>}
                 {this.state.validSubmission == 1 && <Plot
                     style={{
