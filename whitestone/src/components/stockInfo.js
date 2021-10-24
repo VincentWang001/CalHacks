@@ -13,6 +13,8 @@ class Stock extends React.Component {
             stockChartXValues: [],
             stockChartYValues: [],
             stock: '',
+            price: '',
+            latestDate: '',
             isSubmitted: false
         }
     }
@@ -25,7 +27,7 @@ class Stock extends React.Component {
         this.setState({
             stock: e.target.value
         });
-        console.log(this.state.stock)
+        
     }
 
     onStockSubmit() {
@@ -57,16 +59,26 @@ class Stock extends React.Component {
             .then(
                 function (data) {
                     console.log(data);
-
+                    var latestDateBool = true;
+                    var latestPrice = '';
+                    var latestDate = '';
                     for (var key in data['Time Series (Daily)']) {
+                        if (latestDateBool == true) {
+                            latestDate = key;
+                            latestPrice = data['Time Series (Daily)'][key]['4. close'];
+                            console.log(latestPrice);
+                            latestDateBool = false;
+                        }
                         stockChartXValuesFunction.push(key);
-                        stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['1. open']);
+                        stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['4. close']);
                     }
 
                     // console.log(stockChartXValuesFunction);
                     pointerToThis.setState({
                         stockChartXValues: stockChartXValuesFunction,
-                        stockChartYValues: stockChartYValuesFunction
+                        stockChartYValues: stockChartYValuesFunction,
+                        price: latestPrice,
+                        latestDate: latestDate
                     });
                 }
             )
@@ -81,7 +93,10 @@ class Stock extends React.Component {
                     onChange={this.onChangeStock}
                 />
                 <input type="submit" value="Submit" onClick={this.onStockSubmit.bind(this)} />
-                <p>{this.state.stock}</p>
+                {this.state.isSubmitted && <div>
+                    <p>{this.state.stock}</p>
+                    <p>Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}</p>
+                </div>}
                 {this.state.isSubmitted && <Plot
                     data={[
                         {

@@ -8,7 +8,7 @@ import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
 import TodoApp from "./components/make-todo.component";
 
-import pepeSad from "./poster.jpeg";
+import pepeSad from "./stonks.jpg";
 import StockFinder from './components/finance';
 import Stock from "./components/stockInfo";
 
@@ -21,7 +21,7 @@ class App extends Component {
         <div className="container">
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="https://codingthesmartway.com" target="_blank">
-              <img src={pepeSad} width="30" height="30" alt="CodingTheSmartWay.com" />
+              <img src={pepeSad} width="50" height="30" alt="CodingTheSmartWay.com" />
             </a>
             <Link to="/" className="navbar-brand">Whitestone</Link>
             <div className="collpase navbar-collapse">
