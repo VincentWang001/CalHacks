@@ -274,8 +274,8 @@ class Stock extends React.Component {
                     <PadTop/>
                     <StyledH2 style={{ color: 'white' }}>Stock: {this.state.stateStock} <p></p>
                     Budget: ${this.state.stateBudget} <p></p>
-                    Stock price (as of closing price on {this.state.latestDate}): ${this.state.price}
-                    With a budget of ${this.state.stateBudget}, you could buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</StyledH2>
+                    Stock price (as of closing price on {this.state.latestDate}): ${this.state.price} <p></p>
+                    With a budget of ${this.state.stateBudget}, you can buy {Math.floor(this.state.stateBudget * 100/ this.state.price)/100} stocks!</StyledH2>
                 </div>}
                 {this.state.validSubmission == 1 && <Plot
                     style={{
