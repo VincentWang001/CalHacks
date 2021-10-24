@@ -107,7 +107,7 @@ class Stock extends React.Component {
             <div>
                 <div style={{ marginTop: 10 }}>
                 <StyledH1>Stock Market</StyledH1>
-                {/* <form onSubmit={this.onSubmit}> */}
+                <form onSubmit={this.onStockSubmit}>
                     <div className="form-group">
                         <label>Enter the stock you want (in abbreviated caps) here!</label>
                         <input type="text"
@@ -129,11 +129,13 @@ class Stock extends React.Component {
                     <p></p>
                     <div className="form-group">
                         <input type="submit" 
-                            value="Generate Data!" 
+                            //value="Generate Data!" 
+                            value="Submit"
                             className="btn btn-primary"
-                            onClick={this.onStockSubmit.bind(this)} />
+                            //onClick={this.onStockSubmit.bind(this)} 
+                        />
                     </div>
-                {/*     </form> */}
+                </form>
             </div>
 
                 {/* <StyledH1>Stock Market</StyledH1>
