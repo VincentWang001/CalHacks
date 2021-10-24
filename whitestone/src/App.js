@@ -27,7 +27,7 @@ class App extends Component {
             <a class="navbar-brand" href="https://codingthesmartway.com" target="_blank">
               <img src={pepeSad} width="50" height="30" alt="CodingTheSmartWay.com" />
             </a>
-            <StyledLink to="/" className="navbar-brand">Whitestone</StyledLink>
+            <StyledLink to="/" className="navbar-brand">Home</StyledLink>
             <div className="collpase navbar-collapse">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
