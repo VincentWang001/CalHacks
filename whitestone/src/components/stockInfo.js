@@ -148,6 +148,7 @@ class Stock extends React.Component {
         let API_Call = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.state.stock}&outputsize=compact&apikey=${API_KEY}`;
         let stockChartXValuesFunction = [];
         let stockChartYValuesFunction = [];
+        let leastSquaresX= [];
         
         fetch(API_Call)
             .then(
@@ -161,6 +162,7 @@ class Stock extends React.Component {
                     var latestDateBool = true;
                     var latestPrice = '';
                     var latestDate = '';
+                    var count = 0;
                     for (var key in data['Time Series (Daily)']) {
                         if (latestDateBool == true) {
                             latestDate = key;
@@ -170,6 +172,8 @@ class Stock extends React.Component {
                         }
                         stockChartXValuesFunction.push(key);
                         stockChartYValuesFunction.push(data['Time Series (Daily)'][key]['4. close']);
+                        leastSquaresX.push(count);
+                        count += 1;
                     }
 
 
@@ -194,7 +198,7 @@ class Stock extends React.Component {
                     });
 
                     console.log("pls work:", stockChartXValuesFunction);
-                    //this.findLineByLeastSquares(stockChartXValuesFunction, stockChartYValuesFunction);
+                    this.findLineByLeastSquares(leastSquaresX, stockChartYValuesFunction.reverse());
 
                 }
             )
