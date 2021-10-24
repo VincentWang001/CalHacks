@@ -21,7 +21,7 @@ export default class TodosList extends Component {
         return (
             <div>
                 <StyledH1>WHITESTONE</StyledH1>
-                <StyledP>Welcome to STONKS!!</StyledP>
+                <StyledP>Welcome to Whitestone, the place for you to know all about the stocks you're interested in!</StyledP>
                 <img src={pepeSad} width="300" height="300"/>
             </div>
         )

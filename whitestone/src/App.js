@@ -7,7 +7,6 @@ import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
 
 import pepeSad from "./stonks.jpg";
-import StockFinder from './components/finance';
 import Stock from "./components/stockInfo";
 import styled from 'styled-components';
 
@@ -28,14 +27,11 @@ class App extends Component {
             <a class="navbar-brand" href="https://codingthesmartway.com" target="_blank">
               <img src={pepeSad} width="50" height="30" alt="CodingTheSmartWay.com" />
             </a>
-            <StyledLink to="/" className="navbar-brand">Whitestone</StyledLink>
+            <StyledLink to="/" className="navbar-brand">Home</StyledLink>
             <div className="collpase navbar-collapse">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
                   <StyledLink to="/Stock" className="nav-link">Stock App</StyledLink>
-                </li>
-                <li className="navbar-item">
-                  <StyledLink to="/finder" className="nav-link">Finance App</StyledLink>
                 </li>
               </ul>
             </div>
@@ -43,7 +39,6 @@ class App extends Component {
           <br />
           <Route path="/" exact component={TodosList} />
           <Route path="/edit/:id" component={EditTodo} />
-          <Route path="/finder" component={StockFinder} />
           <Route path="/Stock" component={Stock} />
 
         </div>
